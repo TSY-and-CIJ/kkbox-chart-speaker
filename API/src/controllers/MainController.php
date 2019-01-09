@@ -2,31 +2,36 @@
 
 namespace App\Controllers;
 
+use App\services\ContentService;
 use App\Services\TTSService;
+use App\services\KkboxService;
 
 class MainController
 {
     private $settings;
     private $TTSService;
+    private $kkboxService;
+    private $contentService;
 
     public function __construct()
     {
         $this->settings = require __DIR__ . '/../settings.php';
         $this->TTSService = new TTSService($this->settings);
+        $this->kkboxService = new KkboxService($this->settings);
+        $this->contentService = new ContentService();
     }
 
-    public function fetchTTSUrl($text)
+    public function fetchDailyChart()
     {
-        $info = $this->TTSService->convert($text);
-        $convertId = $info['id'];
-        $status = 0;
+        $dailyChartInfo = $this->kkboxService->fetchCPOPDailyChartInfo();
+        $content = $this->contentService->getChartContent($dailyChartInfo);
+        echo $this->TTSService->fetchTTSUrl($content);
+    }
 
-        // retry 到音檔完成
-        while (TTSService::STATUS_COMPLETED_CODE !== $status) {
-            $result = $this->TTSService->getConvertStatus($convertId);
-            $status = (int) $result['status'];
-        }
-
-        return $this->TTSService->getConvertUrl($convertId);
+    public function fetchHourlyChart()
+    {
+        $hourlyChartInfo = $this->kkboxService->fetchHourlyChart(5);
+        $content = $this->contentService->getChartContent($hourlyChartInfo, true);
+        echo $this->TTSService->fetchTTSUrl($content);
     }
 }
