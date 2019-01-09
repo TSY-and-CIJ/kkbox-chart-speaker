@@ -20,7 +20,22 @@ class TTSService
         $this->client = new \SoapClient(self::TTS_Web_Service_Server);
     }
 
-    public function convert($text)
+    public function fetchTTSUrl($text)
+    {
+        $info = $this->convert($text);
+        $convertId = $info['id'];
+        $status = 0;
+
+        // retry 到音檔完成
+        while (TTSService::STATUS_COMPLETED_CODE !== $status) {
+            $result = $this->getConvertStatus($convertId);
+            $status = (int) $result['status'];
+        }
+
+        return $this->getConvertUrl($convertId);
+    }
+
+    private function convert($text)
     {
         $result = $this->client->ConvertSimple($this->account, $this->password, $text);
 
@@ -32,7 +47,7 @@ class TTSService
         ];
     }
 
-    public function getConvertStatus($id)
+    private function getConvertStatus($id)
     {
         $result = $this->client->GetConvertStatus($this->account, $this->password, $id);
 
@@ -44,7 +59,7 @@ class TTSService
         ];
     }
 
-    public function getConvertUrl($id)
+    private function getConvertUrl($id)
     {
         $result = $this->client->GetConvertStatus($this->account, $this->password, $id);
         list($resultCode, $resultString, $statusCode, $status, $url) = explode("&",$result);
