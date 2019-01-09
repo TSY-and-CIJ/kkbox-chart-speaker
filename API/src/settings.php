@@ -31,5 +31,10 @@ return [
             'account' => getenv('TTS_ACCOUNT', 'account'),
             'password' => getenv('TTS_PASSWORD', 'password'),
         ],
+
+        'KKBOX' => [
+            'id' => getenv('KKBOX_ID', 'kkbox_id'),
+            'secret' => getenv('KKBOX_SECRET', 'kkbox_secret'),
+        ],
     ],
 ];
