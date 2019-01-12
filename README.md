@@ -28,6 +28,8 @@ Demo 影片：
 
 #### 線路圖
 
+<img src="https://github.com/TSY-and-CIJ/kkbox-chart-speaker/blob/master/schematic.png" height="360">
+
 #### 環境設置
 於`kkbox_chart_speaker.ino`中：  
 
