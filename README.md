@@ -13,9 +13,47 @@ Demo 影片：
 
 ## 系統架構
 
-## 運行流程
+<img src="https://github.com/TSY-and-CIJ/kkbox-chart-speaker/blob/master/system.png" height="240">
+
+使用開發版處理所有邏輯十分耗時，因此另外架設 API 處理外部服務的資料，加快處理的速度。
+
+## 取榜流程
 
 ## API 端
+
+* Language：php
+* Framework：Slim Framework
+* Cloud Application Platform：Heroku   
+  (將開發好的內容 merge 至 deploy branch 即可自動 deploy 至 Heroku。)
+
+
+### Routes
+
+* `daily-chart`：取得最新華語日榜的語音檔
+* `hourly-chart`：取得綜合新歌即時榜的語音檔
+
+### 環境建置
+
+#### 環境變數
+
+名稱 | 說明
+------------ | -------------
+TTS_ACCOUNT | 工研院文字轉語音Web服務帳號
+TTS_PASSWORD | 工研院文字轉語音Web服務密碼
+KKBOX_ID | KKBOX Open API ID
+KKBOX_SECRET | KKBOX Open API Secret
+
+#### Local 建置方法
+
+複製 env example 檔案，在 `.env` 檔將需要的 id / secret 填入。
+```
+cp .env.example .env
+```
+
+#### Heroku 建置方法
+
+於 Heroku 的 `Config Vars` 將環境變數加上。
+
 
 ## 開發板端
 #### 開發板與其他設備
