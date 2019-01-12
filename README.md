@@ -1,5 +1,6 @@
 # KKBOX Chart Speaker
-Demo 影片：
+Demo 影片：https://youtu.be/AjD9IsPjwqc   
+<img src="https://github.com/TSY-and-CIJ/kkbox-chart-speaker/blob/master/thumbnail.png" height="240">
 
 ## 功能簡介
 * 顯示當前時間
@@ -18,6 +19,9 @@ Demo 影片：
 使用開發版處理所有邏輯十分耗時，因此另外架設 API 處理外部服務的資料，加快處理的速度。
 
 ## 取榜流程
+* 啟動：取日榜、即時榜
+* 每小時 10 分：取即時榜
+* 每日 8 點：取日榜
 
 ## API 端
 
