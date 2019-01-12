@@ -1,6 +1,6 @@
 # KKBOX Chart Speaker
 Demo 影片：https://youtu.be/AjD9IsPjwqc   
-<img src="https://github.com/TSY-and-CIJ/kkbox-chart-speaker/blob/master/thumbnail.png" height="240">
+<a href="https://youtu.be/AjD9IsPjwqc"><img src="https://github.com/TSY-and-CIJ/kkbox-chart-speaker/blob/master/thumbnail.png" height="240"></a>
 
 ## 功能簡介
 * 顯示當前時間
